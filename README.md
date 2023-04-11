@@ -44,3 +44,40 @@ You have to create a new predictor from the **Predictors** tab using the **Advan
 
 You can then go back to the project and fit the diabetes model:
 
+<p align="center"><img src="https://user-images.githubusercontent.com/30443495/231186287-2b2294de-bc2f-42c4-8dda-06ff4ba37edf.png" width="80%" /></p>
+
+The **HTTP Request** component gets the data from url 
+https://raw.githubusercontent.com/loko-ai/regression_from_web_dataset/master/data/diabetes.json, the **Function** component 
+yields the rows of the dataset as a stream and finally the **Predictor** component fits the diabetes predictor.
+
+Ones the model is fitted, you can open the Predictors tab and visualize the generated report:
+
+<p align="center"><img src="https://user-images.githubusercontent.com/30443495/231194515-180b355f-0bba-4d0c-9645-8cdb0d4d3758.gif" width="80%" /></p>
+
+### STEP2: Expose service
+
+Finally, you can expose a service to obtain the diabetes predictions.
+
+<p align="center"><img src="https://user-images.githubusercontent.com/30443495/231217493-dd0d6b70-e5fa-40c0-97a2-b6f79810ce1f.png" width="80%" /></p>
+
+Use **Route** and **Response** components at the beginning and at the end of the flow producing the output. In the 
+**Route** configuration name the service *predict* and copy the complete url (i.e. http://localhost:9999/routes/orchestrator/endpoints/regression_from_web_dataset/predict).
+In the **Response** component set the *Response Type* to json. 
+
+The **Function** component extracts the body from the received request and returns it to the **Predictor** component 
+which predicts the output.
+
+You can test it using:
+
+```
+curl -d '{"age": 0.0380759064, "sex": 0.0506801187, "bmi": 0.0616962065, "bp": 0.0218723855, "s1": -0.0442234984, "s2": -0.0348207628, "s3": -0.0434008457, "s4": -0.002592262, "s5": 0.0199074862, "s6": -0.0176461252}' -X POST http://localhost:9999/routes/orchestrator/endpoints/regression_from_web_dataset/predict
+```
+
+### STEP3: Test service
+
+You can test the predict service directly in your flow using the **HTTP Request** component:
+
+<p align="center"><img src="https://user-images.githubusercontent.com/30443495/231221294-f6a515c6-42d6-4f36-bb1a-78b1a1ce0faf.png" width="80%" /></p>
+
+In this case you have change http://localhost:9999 to http://gateway:8080 since the request will be executed in one of 
+the containers inside the loko network (i.e. http://gateway:8080/routes/orchestrator/endpoints/regression_from_web_dataset/predict).
