@@ -42,7 +42,11 @@ You have to create a new predictor from the **Predictors** tab using the **Advan
 
 <p align="center"><img src="https://user-images.githubusercontent.com/30443495/231183804-ea048646-a957-4d57-9d3a-fc9ec230ff3c.gif" width="80%" /></p>
 
-You can then go back to the project and fit the diabetes model:
+In order to start the project remember to press the play button on the right of the project's name:
+
+<p align="center"><img src="https://github.com/Cecinamo/ner/assets/30443495/2a50618e-750c-4e1f-a961-f6d3dc1af912" width="80%" /></p>
+
+Then you can fit the diabetes model:
 
 <p align="center"><img src="https://user-images.githubusercontent.com/30443495/231186287-2b2294de-bc2f-42c4-8dda-06ff4ba37edf.png" width="80%" /></p>
 
@@ -52,7 +56,7 @@ yields the rows of the dataset as a stream and finally the **Predictor** compone
 
 Ones the model is fitted, you can open the Predictors tab and visualize the generated report:
 
-<p align="center"><img src="https://user-images.githubusercontent.com/30443495/231194515-180b355f-0bba-4d0c-9645-8cdb0d4d3758.gif" width="80%" /></p>
+<p align="center"><img src="https://github.com/Cecinamo/ner/assets/30443495/f444d90b-4336-4d20-97d2-f3a4f11528cf" width="80%" /></p>
 
 ### STEP2: Expose service
 
